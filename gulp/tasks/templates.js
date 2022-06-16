@@ -1,9 +1,10 @@
 import fileInclude from 'gulp-file-include'
- import webpHtmlNosvg from 'gulp-webp-html-nosvg'
+import webpHtmlNosvg from 'gulp-webp-html-nosvg'
 import versionNumber from 'gulp-version-number'
+import pug from 'gulp-pug'
 
 export  const templates = () => {
-  return app.gulp.src(`${app.path.src.templates}/*.html`)
+  return app.gulp.src(`${app.path.src.templates}/*.pug`)
     .pipe(app.plugins.plumber(
       app.plugins.notify.onError({
         title: 'HTML',
@@ -27,8 +28,11 @@ export  const templates = () => {
         },
       })
     )
-    .pipe(fileInclude())
     .pipe(app.plugins.replace(/@img\//g, 'img/'))
+    .pipe(pug({
+      pretty: true,
+      verbose: true,
+    }))
     .pipe(app.gulp.dest(app.path.build.templates))
     // .pipe(app.plugins.browsersync.stream())
 }

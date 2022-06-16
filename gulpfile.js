@@ -36,7 +36,7 @@ import { ttfToWoff2, fontsStyle } from './gulp/tasks/fonts.js'
 // }
 
 function watcher() {
-  gulp.watch(`${path.src.templates}/**/*.html`, templates)
+  gulp.watch(`${path.src.templates}/**/*.pug`, templates)
   gulp.watch(`${path.src.styles}/**/*.sass`, styles)
   gulp.watch(`${path.src.js}/**/*.js`, js)
   gulp.watch(path.watch.images, images)
