@@ -1,6 +1,7 @@
 // осн. модуль.
 import gulp from 'gulp'
-import nunjucks from 'gulp-nunjucks'
+import pug from 'pug'
+// import nunjucks from 'gulp-nunjucks'
 
 // импорт путей.
 import { path } from './gulp/config/path.js'
@@ -13,7 +14,8 @@ global.app = {
   path: path,
   gulp: gulp,
   plugins: plugins,
-  nunjucks: nunjucks,
+  pug: pug,
+  // nunjucks: nunjucks,
 }
 
 // импорт задач.

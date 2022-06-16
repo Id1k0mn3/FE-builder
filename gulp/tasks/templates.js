@@ -1,16 +1,15 @@
-import webpHtmlNosvg from 'gulp-webp-html-nosvg'
+import fileInclude from 'gulp-file-include'
+ import webpHtmlNosvg from 'gulp-webp-html-nosvg'
 import versionNumber from 'gulp-version-number'
 
 export  const templates = () => {
   return app.gulp.src(`${app.path.src.templates}/*.html`)
     .pipe(app.plugins.plumber(
       app.plugins.notify.onError({
-        tittle: 'HTML',
+        title: 'HTML',
         message: 'Error: U+1F921 <%= error.message %>'
       }))
     )
-    .pipe(app.nunjucks.compile())
-    .pipe(app.plugins.replace(/@img\//g, 'img/'))
     .pipe(webpHtmlNosvg())
     .pipe(
       versionNumber({
@@ -28,6 +27,8 @@ export  const templates = () => {
         },
       })
     )
+    .pipe(fileInclude())
+    .pipe(app.plugins.replace(/@img\//g, 'img/'))
     .pipe(app.gulp.dest(app.path.build.templates))
-    .pipe(app.plugins.browsersync.stream())
+    // .pipe(app.plugins.browsersync.stream())
 }
