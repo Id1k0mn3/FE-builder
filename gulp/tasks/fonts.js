@@ -36,7 +36,7 @@ export const ttfToWoff2 = () => {
 // }
 
 export const fontsStyle = () => {
-  const fontsFile =`${app.path.srcFolder}/styles/fonts.sass`
+  const fontsFile =`${app.path.srcFolder}/styles/fonts.scss`
   fs.readdir(app.path.build.fonts, function(err, fontsFiles) {
     if(fontsFiles) {
       if(!fs.existsSync(fontsFile)) {
@@ -67,13 +67,13 @@ export const fontsStyle = () => {
             } else {
               fontWeight = 400
             }
-            fs.appendFile(fontsFile, `@font-face
-              font-family: ${fontName}
-              font-display: swap
-              src: url("../fonts/${fontFileName}.woff2") format("woff2"), url("../fonts/${fontFileName}.woff") format("woff")
-              font-weight: ${fontWeight}
-              font-style: normal
-            `, cb)
+            fs.appendFile(fontsFile, `@font-face {
+              font-family: ${fontName};
+              font-display: swap;
+              src: url("../fonts/${fontFileName}.woff2") format("woff2"), url("../fonts/${fontFileName}.woff") format("woff");
+              font-weight: ${fontWeight};
+              font-style: normal;
+            }`, cb)
             newFileOnly = fontFileName
           }
         }
